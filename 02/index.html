@@ -1,99 +1,72 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Emma 省錢入口</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>折扣碼專區</title>
 <style>
-body{
-margin:0;
-background:#f2f2f2;
-font-family:system-ui;
-}
+  body {
+    font-family: 'Noto Sans', sans-serif;
+    background: #fff4f0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  h1 {
+    margin-top: 40px;
+    color: #ff3d3d;
+    font-size: 32px;
+  }
 
-.box{
-max-width:420px;
-margin:auto;
-padding:40px 20px;
-text-align:center;
-}
+  .discount-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin: 50px 20px;
+  }
 
-.avatar{
-width:90px;
-height:90px;
-border-radius:50%;
-background:#ccc;
-margin:auto;
-}
+  .discount-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 25px 20px;
+    width: 240px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .discount-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+  }
 
-h1{margin:12px 0 5px;}
-p{color:#666;}
+  .discount-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+  }
+  .discount-code {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ff3d3d;
+    margin-bottom: 18px;
+    word-break: break-word;
+  }
 
-a{
-display:block;
-padding:16px;
-margin:14px 0;
-border-radius:12px;
-color:white;
-text-decoration:none;
-font-weight:600;
-}
-
-.shopee{background:#ee4d2d;}
-.line{background:#00c300;}
-.group{background:#444;}
-.web{background:#007bff;}
-
-footer{
-margin-top:40px;
-font-size:13px;
-color:#aaa;
-}
-  a{
-transition:.2s;
-}
-
-a:hover{
-transform:scale(1.05);
-}
-
-</style>
-
-</script>
-
-</head>
-
-<body>
-
-</script>
-
-
-<div class="box">
-
-<img class="avatar" src="avatar.jpg">
-
-<h1>mama 省錢大補帖</h1>
-<p>折扣碼整理</p>
-
-<a class="shopee" href="https://shopee.tw">🛒 蝦皮優惠</a>
-
-<a class="line" href="https://l.threads.com/?u=https%3A%2F%2Fline.me%2Fti%2Fg2%2FfiVyHkr5AAanaSMvmLmEYcqCCptU17nL0rVApg%3Futm_source&e=AT3FEvgmBDAgj4jZ6Zq85Zrp9oIXZ1eLvRcVZ20pL-6ZxZkiVhgt5jrR4ARpO5VJjn6dCqE-Weto6J4qzkCrLT1cD3_81vqvVn-8kdZZFkI156aNoHVMt_vEgL0Ljktp-IaiikzD1y0">💬 LINE 群</a>
-
-<a class="group" href="https://www.threads.com/@crabboss.money?igshid=NTc4MTIwNjQ2YQ==">🔥 社群</a>
- 
-<style>
   .discount-btn {
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: bold;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 700;
     background: linear-gradient(135deg,#ff7a18,#ff3d3d);
     color: #fff;
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.1s;
+    transition: transform 0.1s, box-shadow 0.2s;
+  }
+  .discount-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(255,61,61,0.4);
   }
   .discount-btn:active {
     transform: scale(0.95);
@@ -107,7 +80,7 @@ transform:scale(1.05);
     color: #fff;
     text-align: center;
     border-radius: 8px;
-    padding: 12px;
+    padding: 14px;
     position: fixed;
     z-index: 9999;
     bottom: 30px;
@@ -120,41 +93,79 @@ transform:scale(1.05);
     visibility: visible;
     opacity: 1;
   }
-</style>
 
-<button class="discount-btn" onclick="copyAndGo('123456','https://mc.tw.coupang.com/ssr/desktop/discount-coupon')">
-  複製折扣碼 & 前往購買
-</button>
+  .footer {
+    margin: 60px 0 30px 0;
+    font-size: 18px;
+  }
+  .footer a {
+    color: #ff3d3d;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  /* 響應式手機 */
+  @media (max-width: 600px) {
+    .discount-card {
+      width: 90%;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<h1>超值折扣碼專區</h1>
+
+<div class="discount-container">
+  <div class="discount-card">
+    <div class="discount-title">首購折扣</div>
+    <div class="discount-code">WELCOME10</div>
+    <button class="discount-btn" onclick="copyAndGo('WELCOME10','https://example.com/product1')">複製 & 前往購買</button>
+  </div>
+
+  <div class="discount-card">
+    <div class="discount-title">滿額折扣</div>
+    <div class="discount-code">SAVE20</div>
+    <button class="discount-btn" onclick="copyAndGo('SAVE20','https://example.com/product2')">複製 & 前往購買</button>
+  </div>
+
+  <div class="discount-card">
+    <div class="discount-title">限定優惠</div>
+    <div class="discount-code">LIMITED30</div>
+    <button class="discount-btn" onclick="copyAndGo('LIMITED30','https://example.com/product3')">複製 & 前往購買</button>
+  </div>
+
+  <div class="discount-card">
+    <div class="discount-title">會員專屬</div>
+    <div class="discount-code">VIP50</div>
+    <button class="discount-btn" onclick="copyAndGo('VIP50','https://example.com/product4')">複製 & 前往購買</button>
+  </div>
+</div>
+
+<div class="footer">
+  加入我們的社群：<a href="https://line.me/R/ti/p/@yourlineid" target="_blank">Line 官方社群</a>
+</div>
 
 <div id="copy-toast">折扣碼已複製！</div>
 
 <script>
-  function copyAndGo(code, url) {
-    // 複製折扣碼
-    const input = document.createElement('input');
-    input.value = code;
-    document.body.appendChild(input);
-    input.select();
-    input.setSelectionRange(0, 99999);
-    document.execCommand('copy');
-    document.body.removeChild(input);
+function copyAndGo(code, url) {
+  const input = document.createElement('input');
+  input.value = code;
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand('copy');
+  document.body.removeChild(input);
 
-    // 顯示 toast
-    const toast = document.getElementById('copy-toast');
-    toast.classList.add('show');
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 2000);
+  const toast = document.getElementById('copy-toast');
+  toast.classList.add('show');
+  setTimeout(() => { toast.classList.remove('show'); }, 2000);
 
-    // 1 秒後跳轉到購物頁
-    setTimeout(() => {
-      window.location.href = url;
-    }, 1000);
-  }
-
-<footer>© 2026 Emma</footer>
-
-</div>
+  window.location.href = url;
+}
+</script>
 
 </body>
 </html>
