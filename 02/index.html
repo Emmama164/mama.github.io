@@ -41,14 +41,7 @@
     font-size: 16px;
     font-weight: 700;
     color: #333;
-    margin-bottom: 8px;
-  }
-  .discount-code {
-    font-size: 20px;
-    font-weight: 800;
-    color: #ff3d3d;
     margin-bottom: 12px;
-    word-break: break-word;
   }
   .discount-btn {
     padding: 10px 20px;
@@ -60,6 +53,7 @@
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.2s;
+    position: relative;
   }
   .discount-btn:hover {
     transform: scale(1.05);
@@ -67,6 +61,24 @@
   }
   .discount-btn:active {
     transform: scale(0.95);
+  }
+
+  /* Hover 提示 */
+  .discount-btn[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0.9;
+    z-index: 999;
   }
 
   #copy-toast {
@@ -127,7 +139,6 @@
 <div id="copy-toast">折扣碼已複製！</div>
 
 <script>
-  // 💡 在這裡填入你的折扣碼資料
   const discountData = [
     { title: "酷棚 899-80", code: "Y26CNY80", url: "https://mc.tw.coupang.com/ssr/desktop/discount-coupon" },
     { title: "酷澎 2500-300 wow會員限定", code: "Y26WOW300", url: "https://mc.tw.coupang.com/ssr/desktop/discount-coupon" },
@@ -138,14 +149,15 @@
 
   const container = document.getElementById('discount-container');
 
-  // 自動生成卡片
+  // 自動生成卡片，但不顯示折扣碼
   discountData.forEach(item => {
     const card = document.createElement('div');
     card.className = 'discount-card';
     card.innerHTML = `
       <div class="discount-title">${item.title}</div>
-      <div class="discount-code">${item.code}</div>
-      <button class="discount-btn" onclick="copyAndGo('${item.code}','${item.url}')">複製 & 前往購買</button>
+      <button class="discount-btn" title="點擊即可自動複製折扣碼" onclick="copyAndGo('${item.code}','${item.url}')">
+        複製折扣碼 & 前往購買
+      </button>
     `;
     container.appendChild(card);
   });
