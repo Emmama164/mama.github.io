@@ -7,14 +7,14 @@
 <style>
   body {
     font-family: 'Noto Sans', sans-serif;
-    background: #fff;
+    background: #FFB5B5; /* 背景顏色 */
     margin: 0;
     padding: 0;
     text-align: center;
   }
   h1 {
     margin-top: 40px;
-    color: #ff3d3d;
+    color: #4F4F4F; /* 標題顏色 */
     font-size: 28px;
   }
 
@@ -47,7 +47,7 @@
     padding: 10px 20px;
     font-size: 14px;
     font-weight: 700;
-    background: linear-gradient(135deg,#ff7a18,#ff3d3d);
+    background: #930000; /* 按鈕顏色 */
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -57,7 +57,7 @@
   }
   .discount-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(255,61,61,0.4);
+    box-shadow: 0 4px 10px rgba(147,0,0,0.4);
   }
   .discount-btn:active {
     transform: scale(0.95);
@@ -125,7 +125,7 @@
 </head>
 <body>
 
-<h1>mama省錢大補帖<br>折扣碼專區</h1>
+<h1>mama專屬<br>折扣碼</h1> <!-- 這裡用 <br> 換行 -->
 
 <div class="discount-container" id="discount-container">
   <!-- 折扣碼卡片將自動生成 -->
@@ -143,6 +143,8 @@
     { title: "酷棚 899-80", code: "Y26CNY80", url: "https://mc.tw.coupang.com/ssr/desktop/discount-coupon" },
     { title: "酷澎 2500-300 wow會員限定", code: "Y26WOW300", url: "https://mc.tw.coupang.com/ssr/desktop/discount-coupon" },
     { title: "酷澎 800-200 首購限定", code: "FEBNC2001", url: "https://mc.tw.coupang.com/ssr/desktop/discount-coupon" },
+    { title: "會員專屬", code: "VIP50", url: "https://shopee.tw/product4" },
+    { title: "週末特惠", code: "WEEKEND15", url: "https://shopee.tw/product5" }
   ];
 
   const container = document.getElementById('discount-container');
@@ -153,8 +155,8 @@
     card.className = 'discount-card';
     card.innerHTML = `
       <div class="discount-title">${item.title}</div>
-      <button class="discount-btn" title="點擊即可自動複製折扣碼並導向" onclick="copyAndGo('${item.code}','${item.url}')">
-       點我拿折扣碼
+      <button class="discount-btn" title="點擊即可自動複製折扣碼" onclick="copyAndGo('${item.code}','${item.url}')">
+        點我拿折扣碼
       </button>
     `;
     container.appendChild(card);
