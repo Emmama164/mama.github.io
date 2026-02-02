@@ -125,7 +125,7 @@
 </head>
 <body>
 
-<h1>mama折扣碼專區</h1>
+<h1>mama省錢大補帖<br>折扣碼專區</h1>
 
 <div class="discount-container" id="discount-container">
   <!-- 折扣碼卡片將自動生成 -->
@@ -155,7 +155,7 @@
     card.className = 'discount-card';
     card.innerHTML = `
       <div class="discount-title">${item.title}</div>
-      <button class="discount-btn" title="點擊即可自動複製折扣碼" onclick="copyAndGo('${item.code}','${item.url}')">
+      <button class="discount-btn" title="點擊即可自動複製折扣碼並導向" onclick="copyAndGo('${item.code}','${item.url}')">
        點我拿折扣碼
       </button>
     `;
