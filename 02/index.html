@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>折扣碼列表</title>
+<title>折扣碼專區</title>
 <style>
   body {
     font-family: 'Noto Sans', sans-serif;
@@ -18,7 +18,6 @@
     font-size: 28px;
   }
 
-  /* 中間折扣碼區 */
   .discount-container {
     display: flex;
     flex-wrap: wrap;
@@ -70,7 +69,6 @@
     transform: scale(0.95);
   }
 
-  /* Toast 提示 */
   #copy-toast {
     visibility: hidden;
     min-width: 180px;
@@ -92,7 +90,6 @@
     opacity: 1;
   }
 
-  /* 最下面社群/優惠按鈕 */
   .footer {
     margin: 50px 0 30px 0;
     font-size: 14px;
@@ -107,7 +104,6 @@
     text-decoration: underline;
   }
 
-  /* 響應式手機 */
   @media (max-width: 600px) {
     .discount-card {
       width: 90%;
@@ -119,33 +115,10 @@
 
 <h1>折扣碼專區</h1>
 
-<div class="discount-container">
-  <div class="discount-card">
-    <div class="discount-title">首購折扣</div>
-    <div class="discount-code">WELCOME10</div>
-    <button class="discount-btn" onclick="copyAndGo('WELCOME10','https://shopee.tw/product1')">複製 & 前往購買</button>
-  </div>
-
-  <div class="discount-card">
-    <div class="discount-title">滿額折扣</div>
-    <div class="discount-code">SAVE20</div>
-    <button class="discount-btn" onclick="copyAndGo('SAVE20','https://shopee.tw/product2')">複製 & 前往購買</button>
-  </div>
-
-  <div class="discount-card">
-    <div class="discount-title">限定優惠</div>
-    <div class="discount-code">LIMITED30</div>
-    <button class="discount-btn" onclick="copyAndGo('LIMITED30','https://shopee.tw/product3')">複製 & 前往購買</button>
-  </div>
-
-  <div class="discount-card">
-    <div class="discount-title">會員專屬</div>
-    <div class="discount-code">VIP50</div>
-    <button class="discount-btn" onclick="copyAndGo('VIP50','https://shopee.tw/product4')">複製 & 前往購買</button>
-  </div>
+<div class="discount-container" id="discount-container">
+  <!-- 折扣碼卡片將自動生成 -->
 </div>
 
-<!-- 最下面社群 / 優惠按鈕 -->
 <div class="footer">
   <a href="https://shopee.tw/m/mid-month-sale#all" target="_blank">蝦皮優惠</a> | 
   <a href="https://line.me/R/ti/p/@yourlineid" target="_blank">加入 Line 社群</a>
@@ -154,23 +127,45 @@
 <div id="copy-toast">折扣碼已複製！</div>
 
 <script>
-function copyAndGo(code, url) {
-  const input = document.createElement('input');
-  input.value = code;
-  document.body.appendChild(input);
-  input.select();
-  input.setSelectionRange(0, 99999);
-  document.execCommand('copy');
-  document.body.removeChild(input);
+  // 💡 在這裡填入你的折扣碼資料
+  const discountData = [
+    { title: "首購折扣", code: "WELCOME10", url: "https://shopee.tw/product1" },
+    { title: "滿額折扣", code: "SAVE20", url: "https://shopee.tw/product2" },
+    { title: "限定優惠", code: "LIMITED30", url: "https://shopee.tw/product3" },
+    { title: "會員專屬", code: "VIP50", url: "https://shopee.tw/product4" },
+    { title: "週末特惠", code: "WEEKEND15", url: "https://shopee.tw/product5" }
+  ];
 
-  const toast = document.getElementById('copy-toast');
-  toast.classList.add('show');
-  setTimeout(() => { toast.classList.remove('show'); }, 2000);
+  const container = document.getElementById('discount-container');
 
-  window.location.href = url;
-}
+  // 自動生成卡片
+  discountData.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'discount-card';
+    card.innerHTML = `
+      <div class="discount-title">${item.title}</div>
+      <div class="discount-code">${item.code}</div>
+      <button class="discount-btn" onclick="copyAndGo('${item.code}','${item.url}')">複製 & 前往購買</button>
+    `;
+    container.appendChild(card);
+  });
+
+  function copyAndGo(code, url) {
+    const input = document.createElement('input');
+    input.value = code;
+    document.body.appendChild(input);
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    document.body.removeChild(input);
+
+    const toast = document.getElementById('copy-toast');
+    toast.classList.add('show');
+    setTimeout(() => { toast.classList.remove('show'); }, 2000);
+
+    window.location.href = url;
+  }
 </script>
 
 </body>
 </html>
-
