@@ -60,27 +60,82 @@ transform:scale(1.05);
 }
 
 </style>
-<script>
-function copyAndGo(code, url) {
-  const input = document.createElement('input');
-  input.value = code;
-  document.body.appendChild(input);
-  input.select();
-  input.setSelectionRange(0, 99999);
-  document.execCommand('copy');
-  document.body.removeChild(input);
-  alert('折扣碼已複製: ' + code);
-  window.location.href = url;
-}
+
 </script>
 
 </head>
 
 <body>
+  <!-- 複製折扣碼按鈕區塊 -->
+<style>
+  .discount-btn {
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg,#ff7a18,#ff3d3d);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+  .discount-btn:active {
+    transform: scale(0.95);
+  }
 
-  <button class="btn" onclick="copyAndGo('DISCOUNT2026', 'https://example.com')">
+  /* Toast 提示 */
+  #copy-toast {
+    visibility: hidden;
+    min-width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px;
+    position: fixed;
+    z-index: 9999;
+    bottom: 30px;
+    right: 30px;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+  }
+  #copy-toast.show {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>
+
+<button class="discount-btn" onclick="copyAndGo('123456','https://mc.tw.coupang.com/ssr/desktop/discount-coupon')">
   複製折扣碼 & 前往購買
 </button>
+
+<div id="copy-toast">折扣碼已複製！</div>
+
+<script>
+  function copyAndGo(code, url) {
+    // 複製折扣碼
+    const input = document.createElement('input');
+    input.value = code;
+    document.body.appendChild(input);
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    document.body.removeChild(input);
+
+    // 顯示 toast
+    const toast = document.getElementById('copy-toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2000);
+
+    // 1 秒後跳轉到購物頁
+    setTimeout(() => {
+      window.location.href = url;
+    }, 1000);
+  }
+</script>
 
 
 <div class="box">
