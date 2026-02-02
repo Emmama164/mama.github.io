@@ -60,16 +60,35 @@ transform:scale(1.05);
 }
 
 </style>
+<script>
+function copyAndGo(code, url) {
+  const input = document.createElement('input');
+  input.value = code;
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand('copy');
+  document.body.removeChild(input);
+  alert('折扣碼已複製: ' + code);
+  window.location.href = url;
+}
+</script>
+
 </head>
 
 <body>
+
+  <button class="btn" onclick="copyAndGo('DISCOUNT2026', 'https://example.com')">
+  複製折扣碼 & 前往購買
+</button>
+
 
 <div class="box">
 
 <img class="avatar" src="avatar.jpg">
 
 <h1>mama 省錢大補帖</h1>
-<p>每日優惠｜社群爆價</p>
+<p>折扣碼整理</p>
 
 <a class="shopee" href="https://shopee.tw">🛒 蝦皮優惠</a>
 
